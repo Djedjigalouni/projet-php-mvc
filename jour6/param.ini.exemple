@@ -1,0 +1,5 @@
+; c'est le code de base pour creer d'autre base de données
+BDD_HOST =
+BDD_NAME = 
+BDD_LOGIN = 
+BDD_PASSWORD = 
