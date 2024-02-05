@@ -1,3 +1,5 @@
 
-#ne pas partager ce fichier sur github  =>bien securiser ma base des données
+#je ne veux pas versionner et partager le contenu de ce fichier  =>bien securiser ma base des données
 param.ini
+#je ne veux pas versionner et partager le contenu de ce fichier=>c'est à composer de le gérer
+vendor
