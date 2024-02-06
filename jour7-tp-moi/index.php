@@ -1,4 +1,5 @@
 <?php 
+session_start(); //creer la session dés le début de mon code car lors de la connexion en a besoin de la super global $_SESSION
 require_once __DIR__ . "/vendor/autoload.php"; 
 require_once __DIR__ . "/src/Utils/Bdd.php";
 require_once __DIR__ . "/src/Model/User.php";
@@ -18,7 +19,7 @@ $router->map("GET", "/", [
     "method" => "home"
 ] , "home");
 
-$router->map("GET", "/login", [
+$router->map("GET|POST", "/login", [
     "class" => "\App\Controller\SiteController",
     "method" => "login"
 ] , "login");
@@ -37,6 +38,11 @@ $router->map("GET|POST", "/admin/user/new", [
     "class" => "\App\Controller\AdminController",
     "method" => "user_new"
 ] , "admin_user_new");
+$router->map("GET|POST", "/logout", [
+    "class" => "\App\Controller\SiteController",
+    "method" => "logout"
+] , "logout");
+
 
 $match = $router->match(); 
 

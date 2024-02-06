@@ -1,0 +1,15 @@
+{% extends "bootstrap.html.twig" %}
+{% block body %}
+    <h2>Afficher les fleurs</h2>
+    {% for key , value in fleurs %}
+        <p>{{value.nom }} coute {{value.prix}}</p>
+        
+    {% endfor %}
+    <h2>Afficher les fleurs qui sont en stock</h2>
+    {% for key , value in fleurs %}
+        {% if value.isEnStock %}
+        <p>{{value.nom }} coute {{value.prix}}</p>
+        {% endif %}
+     {% endfor %}
+
+{% endblock %}

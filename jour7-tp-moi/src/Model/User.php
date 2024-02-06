@@ -130,6 +130,13 @@ class User{
         return $stmt->fetchObject(User::class);
     }
 
+    public function readOneByEmail(string $email){
+        $connexion = Bdd::getInstance();
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute([":email" => $email]);
+        return $stmt->fetchObject(User::class);
+    }
     public function readAll(){
         $connexion = Bdd::getInstance();
         $sql = "SELECT * FROM user";

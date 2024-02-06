@@ -1,0 +1,35 @@
+{# cas pratique 
+
+créer une nouvelle route exo3 dans le controller exo1Controller
+ce controller contient une méthode exo3
+cette méthode contient un tableau avec les valeurs suivantes 
+
+$data = [
+    "etudiants" => ["Alain", "Pierre", "Céline"],
+    "formations" => ["JS", "PHP" , "Angular", "Symfony"]
+];
+cette variable est envoyée à la vue 
+la vue qui est disponible dans le dossier templates/exo/exo3.html.twig 
+
+afficher tous les étudiants dans la vue 
+afficher toutes les formations dont le nombre de lettre est inférieur à 4 #}
+
+{% extends "bootstrap.html.twig" %}
+{% block body %}
+<h1>Aficher tous les etudiants</h1>
+<ul>
+{% for  key , value in etudiants %}
+    <li>{{value}}</li>
+{% endfor %} 
+</ul>
+ 
+
+<h1>Aficher toutes les formations dont le nombre de caractere est inférieure à 4</h1>
+<ul>
+    {% for key , value  in formations %}
+        {% if value|length < 4 %}
+            <li>{{value}}</li>
+        {% endif %} 
+{% endfor %}  
+</ul>
+{% endblock %}

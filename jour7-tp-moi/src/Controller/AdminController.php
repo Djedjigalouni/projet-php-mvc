@@ -4,6 +4,16 @@ use App\Model\Article ;
 use App\Model\User ; 
 
 class AdminController  extends AbstractController{
+
+    public function __construct()
+    {
+       if(!isset($_SESSION["user"])){
+        $data["h1"] = " Page d'erreur 403 , vous devez vous connecter pour pouvoir accéder à cette page !";
+        $this->render("403" , $data) ;
+        die() ;
+       } 
+    }
+
     public function article_new(){
         $erreur = []; 
         $articleModel = new Article();
@@ -67,11 +77,12 @@ class AdminController  extends AbstractController{
             if($userModel->isUnique($email) !== 0){
                 $erreur[] = "le mail saisit est déjà utilisé, veuillez choisir une autre email"; 
             }
-            // pour securiser les mot de p  asses
-            $passwordHached = password_hash($password , PASSWORD_BCRYPT) ;
+            
+            $passwordHashed = password_hash($password ,  PASSWORD_BCRYPT );
+
             $userModel->setEmail($email)
-                      ->setPassword($passwordHached)
-                      ->setRole("redacteur");
+                ->setPassword($passwordHashed)
+                ->setRole("redacteur");
             // si il n'y a pas d'erreur 
             if(empty($erreur)){
                 // create 
