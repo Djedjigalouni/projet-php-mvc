@@ -85,7 +85,7 @@
                         <span class="text-end"><strong>Creer le :</strong><?= date("d-m-Y", strtotime($value->getDateCreation()) ) ?></span>
                         
                 <?php if(isset($_SESSION["user"])) : ?>
-                        <a class="btn btn-outline-success text-end me-2" href=" <?= $router->generate("admin_vehicule_edit").$value->getId()  ?>" role="button" >Editer</a>
+                        <a class="btn btn-outline-success mt-4" href=" <?= $router->generate("admin_vehicule_edit").$value->getId()  ?>" role="button" >Editer</a>
                 <?php endif ?>
                     </div>
                 </div>
