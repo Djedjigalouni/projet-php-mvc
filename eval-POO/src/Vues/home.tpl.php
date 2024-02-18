@@ -43,7 +43,7 @@
                        
                       </ul>
                       <?php endforeach ?>
-                      <a class="btn btn-outline-success me-2" href="<?= $router->generate("admin_user_new")  ?>" role="button" >Inscrivez vous maintenant</a>
+                      <a class="btn btn-outline-success me-2" href="<?= $router->generate("admin_user_new")  ?>?access=public" role="button" >Inscrivez vous maintenant</a>
                      
                     </div>
                   </div>
@@ -84,7 +84,7 @@
                         <span class="text-end"><strong>Creer le :</strong><?= $value->getDateCreation() ?></span>
                         
                 <?php if(isset($_SESSION["user"])) : ?>
-                        <a class="btn btn-outline-success me-2" href=" <?= $router->generate("admin_vehicule_edit").$value->getId()  ?>" role="button" >Editer</a>
+                        <a class="btn btn-outline-success text-end me-2" href=" <?= $router->generate("admin_vehicule_edit").$value->getId()  ?>" role="button" >Editer</a>
                 <?php endif ?>
                     </div>
                 </div>

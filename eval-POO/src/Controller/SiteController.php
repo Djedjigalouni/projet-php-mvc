@@ -47,7 +47,7 @@ class SiteController extends AbstractController{
         if(!empty($_POST)){
             $email = htmlspecialchars(trim($_POST["email"]));
             $password = htmlspecialchars(trim($_POST["password"]));
-            $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
+            //$pseudo = htmlspecialchars(trim($_POST["pseudo"]));
 
             if(!filter_var($email , FILTER_VALIDATE_EMAIL)){
                 $erreurs[] = "email invalide"; 
@@ -56,9 +56,9 @@ class SiteController extends AbstractController{
             if(!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $password)){
                 $erreurs[] = "le password doit contenir 8 lettres avec au moins une majuscule et une minuscule et un chiffre ";
             }
-            if(strlen($pseudo ) < 3 || strlen($pseudo) > 100){
+            /*if(strlen($pseudo ) < 3 || strlen($pseudo) > 100){
                 $erreur[] = "le pseudo doit contenir entre 3 et 100 lettres";
-            }
+            }*/
 
 
              // est ce que les identifiants saisis existent en base de données 

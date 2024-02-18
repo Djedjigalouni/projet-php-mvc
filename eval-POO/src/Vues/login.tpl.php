@@ -20,11 +20,11 @@
                         <label for="password">Entrez votre mot de passe*</label>
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
-                
+                <!--
                     <div class="form-group py-4 mt-3">
                         <label for="pseudo">Entrez votre pseudo*</label>
                         <input type="text" class="form-control" id="pseudo" name="pseudo">
-                    </div>
+                    </div>-->
                
             </div>
             <div class="d-flex justify-content-center my-4 mt-3">
