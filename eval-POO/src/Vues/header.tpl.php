@@ -42,8 +42,9 @@
                        espace gestion
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?= $router->generate("admin_vehicule_new")  ?>" class="dropdown-item">Ajouter vehicule</a></li>
+                    <li><a href="<?= $router->generate("users")  ?>" class="dropdown-item">Gérer les utilisateurs</a></li>
                         <li><a href="<?= $router->generate("admin_user_new")  ?>" class="dropdown-item">Ajouter un profil</a></li>
+                        <li><a href="<?= $router->generate("admin_vehicule_new")  ?>" class="dropdown-item">Ajouter vehicule</a></li>
                         <li class="nav-item">
                     <a href="<?= $router->generate("logout")  ?>" class="nav-link">Déconnexion</a>
                 </li>

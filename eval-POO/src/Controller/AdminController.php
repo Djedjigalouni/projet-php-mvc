@@ -173,4 +173,81 @@ class AdminController  extends AbstractController{
         $data["erreur"] = $erreur ; 
         $this->render("user_new" , $data); 
     }
+
+    public function user_edit() {
+        echo "qdgjkgklqdfglqdfgkljqdlfg";
+        $erreur = [];
+        $data = [];
+        if(!empty($_POST)){
+            $id = htmlspecialchars(trim($_POST["id"]));
+            $email = htmlspecialchars(trim($_POST["email"]));
+            $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
+            // série de tests 
+            // email valide
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $erreur[] = "email invalide"; 
+            }
+            if(strlen($pseudo ) < 3 || strlen($pseudo) > 100){
+                $erreur[] = "le pseudo doit contenir entre 3 et 100 lettres";
+            }
+
+             // est ce que il n'y a pas déjà un projet user avec le mail saisi 
+            $userModel = new User(); 
+            if($userModel->isUnique($email) !== 0){
+                $erreur[] = "le mail saisitttt est déjà utilisé, veuillez choisir une autre email"; 
+            }
+            
+
+            $userModel->setEmail($email)
+                ->setPseudo($pseudo);
+            // si il n'y a pas d'erreur 
+            if(!empty($erreur)){
+                // create 
+                $data["user"] = $userModel->readOne($id);
+                $data["h1"] = "Editer le profil"; 
+                $data["erreur"] = $erreur ; 
+                $this->render("user_new" , $data);
+            } else {
+            $userModel->update($id);
+            $data["users"] = $userModel->readAll();
+            $data["h1"] = "Gérer les utilisateurs"; 
+            $data["erreur"] = $erreur ; 
+            $this->render("users" , $data);
+            }
+        } else {
+            $uri = $_SERVER["REQUEST_URI"];
+            $parts = explode("/",$uri);
+            $id = (int) $parts[sizeof($parts) - 1];
+            $userModel = new User();
+            $user = $userModel->readOne($id);
+            $data["user"] = $user;
+            $data["h1"] = "Editer le profil"; 
+            $data["erreur"] = $erreur ; 
+            $this->render("user_new" , $data); 
+        }
+    }
+
+    public function user_delete() {
+        $erreur = [];
+        $uri = $_SERVER["REQUEST_URI"];
+        $parts = explode("/",$uri);
+        $id = (int) $parts[sizeof($parts) - 1];
+        $userModel = new User();
+        $userModel->delete($id);
+        $data = [];
+        $data["users"] = $userModel->readAll();
+        $data["h1"] = "Gérer les utilisateurs"; 
+        $data["erreur"] = $erreur ; 
+        $this->render("users" , $data);
+    }
+
+    public function users() {
+        $erreur = [];
+        $userModel = new User();
+        $data = [];
+        $data["users"] = $userModel->readAll();
+        $data["h1"] = "Gérer les utilisateurs"; 
+        $data["erreur"] = $erreur ; 
+        $this->render("users" , $data);
+    }
 } 

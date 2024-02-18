@@ -29,6 +29,21 @@ $router->map("GET", "/vehicule/[i:id]", [
     "method" => "vehicule"
 ] , "vehicule");
 
+$router->map("GET|POST", "/users", [
+    "class" => "\App\Controller\AdminController",
+    "method" => "users"
+] , "users");
+
+$router->map("GET|POST", "/admin/users/[i:id]", [
+    "class" => "\App\Controller\AdminController",
+    "method" => "user_edit"
+] , "admin_user_edit");
+
+$router->map("GET|POST", "/admin/users/delete/[i:id]", [
+    "class" => "\App\Controller\AdminController",
+    "method" => "user_delete"
+] , "admin_user_delete");
+
 $router->map("GET|POST", "/admin/vehicule/new", [
     "class" => "\App\Controller\AdminController",
     "method" => "vehicule_new"

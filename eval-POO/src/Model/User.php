@@ -147,13 +147,12 @@ class User{
     public function update($id){
         $connexion = Bdd::getInstance();
         $sql = "UPDATE user 
-                SET email = :email , password = :password , pseudo = :pseudo 
+                SET email = :email , pseudo = :pseudo 
                 WHERE id = :id";
         $stmt = $connexion->prepare($sql);
         $stmt->execute([
             ":id" => $id ,
             ":email" => $this->email ,
-            ":password" => $this->password ,
             ":pseudo"    => $this->pseudo
         ]);
         return $stmt->rowCount(); 
