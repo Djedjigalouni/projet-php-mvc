@@ -175,7 +175,6 @@ class AdminController  extends AbstractController{
     }
 
     public function user_edit() {
-        echo "qdgjkgklqdfglqdfgkljqdlfg";
         $erreur = [];
         $data = [];
         if(!empty($_POST)){
@@ -194,7 +193,7 @@ class AdminController  extends AbstractController{
              // est ce que il n'y a pas déjà un projet user avec le mail saisi 
             $userModel = new User(); 
             if($userModel->isUnique($email) !== 0){
-                $erreur[] = "le mail saisitttt est déjà utilisé, veuillez choisir une autre email"; 
+                $erreur[] = "le mail saisit est déjà utilisé, veuillez choisir une autre email"; 
             }
             
 
