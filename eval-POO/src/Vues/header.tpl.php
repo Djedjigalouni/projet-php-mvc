@@ -35,7 +35,7 @@
            <?php if(isset($_SESSION["user"])) : ?> 
             <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Bienvenu </a>
+              <a class="nav-link active" aria-current="page" href="#">Bienvenu <?= $_SESSION["Pseudo"] ?></a>
             </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">

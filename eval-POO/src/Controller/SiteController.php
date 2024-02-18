@@ -79,7 +79,8 @@ class SiteController extends AbstractController{
             if(empty($erreurs)){
                 // connexion !!! 
                 // utiliser la SESSION
-                $_SESSION["user"] = $userRecherche ; 
+                $_SESSION["user"] = $userRecherche ;
+                $_SESSION["Pseudo"]  =$userRecherche->getPseudo();
                 // super globale comme $_GET et $_POST 
                 // variable créer par le langage PHP 
                 // variable qui est persistante pendant le moment où vous naviger dans le site internet 
