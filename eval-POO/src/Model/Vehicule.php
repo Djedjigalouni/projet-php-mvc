@@ -96,6 +96,17 @@ class Vehicule{
     }
 
     /**
+     * Set the value of id
+     *
+     * @return  self
+     */
+    public function setId($id){
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Set the value of img
      *
      * @return  self
@@ -190,17 +201,17 @@ class Vehicule{
         $connexion = Bdd::getInstance();
         $sql = "SELECT * FROM vehicule WHERE id= '$id'";
         $stmt = $connexion->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, Vehicule::class)[0];   
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Vehicule::class)[0]; 
     }
 
-    public function update($id){
+    public function update(){
         $connexion = Bdd::getInstance();
         $sql = "UPDATE vehicule 
                 SET nom = :nom , description = :description , modele = :modele , image=:image 
                 WHERE id = :id";
         $stmt = $connexion->prepare($sql);
         $stmt->execute([
-            ":id" => $id ,
+            ":id" => $this->id ,
             ":nom" => $this->nom ,
             ":description" => $this->description ,
             ":modele"    => $this->modele,

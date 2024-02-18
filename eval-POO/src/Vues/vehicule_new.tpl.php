@@ -24,7 +24,7 @@
                
                     <div class="form-group mt-3">
                     <label for="contenu">Description :*</label>
-                        <textarea name="description" id="description" cols="30" rows="10"  value="<?= $data["vehicule"]->getDescription() ?>"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" ><?= $data["vehicule"]->getDescription() ?></textarea>
                     </div>
                
                     <div class="form-group mt-3">
@@ -33,11 +33,12 @@
                     </div>
                 
                 <div class="text-center mt-4 my-4">
-                <?php if (!$data["vehicule"]) {?>
+                <?php if (!$data["vehicule"]->getId()) {?>
                     <input type="submit" name="ajouter" class="btn btn-primary" value="Ajouter un nouveau vehicule">
-                    <?php }?>
+                    <?php }else {?>
                     <input type="submit" name="supprimer" class="btn btn-primary" value="Supprimer un vehicule">
                     <input type="submit" name="modifier" class="btn btn-primary" value="Modifier un vehicule">
+                    <?php }?>
                 </div>
                 </form>
             </div>

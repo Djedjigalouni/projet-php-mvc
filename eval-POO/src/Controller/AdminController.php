@@ -15,14 +15,9 @@ class AdminController  extends AbstractController{
     }
 
     public function Vehicule_new(){
-        echo "iiiiiiiiiiiiiiiiiiii";
         $erreur = []; 
         $vehiculeModel = new Vehicule();
         if(!empty($_POST)){
-            echo $_POST["ajouter"];
-            echo $_POST["modifier"];
-            echo $_POST["supprimer"];
-            return;
             // fonction sanitize => enlever les caractères injections 
             $nom = htmlspecialchars(trim($_POST["nom"]));
             $description = htmlspecialchars(trim($_POST["description"]));
@@ -68,17 +63,59 @@ class AdminController  extends AbstractController{
     public function Vehicule_edit () {
         $erreur = []; 
         $vehiculeModel = new Vehicule();
-        if ($_POST["modifier"]) {
+        if (!empty($_POST["modifier"])) {
+            if(!empty($_POST)){
+                // fonction sanitize => enlever les caractères injections 
+                $id =(int) htmlspecialchars(trim($_POST["id"]));
+                $nom = htmlspecialchars(trim($_POST["nom"]));
+                $description = htmlspecialchars(trim($_POST["description"]));
+                $modele = htmlspecialchars(trim($_POST["modele"]));
+                $image = filter_input(INPUT_POST , "image", FILTER_SANITIZE_URL ); 
+    
+                if(strlen($nom ) < 3 || strlen($nom) > 100){
+                    $erreur[] = "le titre doit contenir entre 3 et 100 lettres";
+                }
+    
+                if(strlen($description ) < 3 || strlen($description) > 65000){
+                    $erreur[] = "le contenu doit contenir entre 3 et 65000 lettres";
+                }   
+    
+                if(strlen($modele ) < 3 || strlen($modele) > 100){
+                    $erreur[] = "le modele doit contenir entre 3 et 100 lettres";
+                } 
+    
+                if($image !== "" && !filter_var($image, FILTER_VALIDATE_URL)){
+                        $erreur[] = "url de l'image n'est pas valide";
+                }
+                
+                $vehiculeModel->setId($id)
+                             ->setNom($nom)
+                             ->setDescription($description)
+                             ->setModele($modele)
+                             ->setImage($image === "" ? null : $image  ); 
+                if(empty($erreur)){
+                    $vehiculeModel->update();
+                    global $router ;
+                    // permet d'être redirigé vers la page d'accueil 
+                    // redirection http 
+                    header("Location:". $router->generate("home"));
+                }
+            }
             $data = [];
-            $this->render("home", $data);
+            $data["erreur"] = $erreur;
+            $data["vehicule"] = $vehiculeModel ; 
+            $this->render("vehicule_new", $data); 
+            //$this->render("home", $data);
         }
 
-        else if ($_POST["supprimer"]) {
+        else if (!empty($_POST["supprimer"])) {
             $vehiculeModel->delete($_POST["id"]);
-            $data = [];
-            $this->render("home", $data); 
+            global $router ;
+            // permet d'être redirigé vers la page d'accueil 
+            // redirection http 
+            header("Location:". $router->generate("home"));
         } else {
-
+            // Editer l'objet
             $uri = $_SERVER["REQUEST_URI"];
             $parts = explode("/",$uri);
             $id = (int) $parts[sizeof($parts) - 1];

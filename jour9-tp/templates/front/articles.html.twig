@@ -1,0 +1,8 @@
+{% extends "bootstrap.htm.twig" %}
+{% block body %}
+    <h1>Liste des articles</h1>
+    {% for key , value in articles %}
+        <h2>{{value.titre}}</h2>
+        <p>{{value.contenu}}</p>
+    {% endfor %}
+{% endblock %}

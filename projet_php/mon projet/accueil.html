@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Site de partage de recette</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <!-- Font Awesome -->
+   <script src="https://kit.fontawesome.com/14273d579a.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="style1.css">
+   </head>
+   <body>
+   <header>
+      <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+          <img src="image/health-food-products-vector-logo-260nw-327398405.jpg" alt="logo" style = "height: 50px ; width :50px; margin-right:2px">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Recettes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="apéritif.html">Apéritif</a></li>
+                <li><a class="dropdown-item" href="entree.html">Entrée</a></li>
+                <li><a class="dropdown-item" href="plat.html">Plat principal</a></li>
+                <li><a class="dropdown-item" href="dessert.html">Dessert</a></li>
+              </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="#">Espace perso</a>
+              </li>
+          </ul>
+          <form class="d-flex me-2 py-2" role="search">
+            <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <button class="btn btn-outline-success" type="submit">Se connecter</button>
+            
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="pageAccueil">
+      <div class="container">
+          <div class="row gy-4 align-items-center">
+            <h2 class="text-center">***Creez de bonheur en partageant vos recettes***</h2>
+              <div class="col-12 col-md-9">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="image/stir-fry-285360_1280.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Paella</h5>
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="image/cake-sale-1566258_640.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Cake salé</h5>
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="image/goulash-3502510_640.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Goulash</h5>
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="image/mozzarella-5254110_640.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Mozzarella</h5>
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="image/eclair-3366430_640.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5>Eclaire</h5>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 col-md-3 text-center">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Rejoignez-nous, c'est <span>gratuit</span>!</h5>
+                    <ul>
+                      <li>Découvrez de nouvelles recettes.</li>
+                      <li>Partagez vos recettes.</li>
+                      <li>Donnez votre avis</li>
+                    </ul>
+                    <button  class="btn btn-outline-success" onclick="window.location.href = 'rejoigner.html'">Rejoignez nous maintenant</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section>      
+  
+  <section id="pageAccueil1" class="my-3 pt-3">
+    <div class="container ">
+      <h2 class="mb-0 text-center">Les dernières recettes publiées</h2>
+      <div class="row mt-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card text-center">
+            <img src="image/curry-7249247_640.jpg" class="card-img-top" higth="50 px" alt="curry">
+            <div class="card-body">
+                <h5 class="card-title text-center "><a href="#" class="text-dark">Curry</a></h5>
+                <p class="card-text text-center">Par Marry Clair</p>
+            </div>
+            <div class="card-footer">
+              <span class="me-5" >nb_like <i class="fa fa-thumbs-up"></i></span>
+              <span>10/01/2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card text-center">
+            <img src="image/cake-sale-1566258_640.jpg" class="card-img-top" higth="50 px" alt="curry">
+            <div class="card-body">
+                <h5 class="card-title text-center "><a href="#" class="text-dark">Cake salé</a></h5>
+                <p class="card-text text-center">Par Meckael.L</p>
+            </div>
+            <div class="card-footer">
+              <span class="me-5" >nb_like <i class="fa fa-thumbs-up"></i></span>
+              <span>10/01/2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card text-center">
+            <img src="image/fried-rice-1762493_640.jpg" class="card-img-top" higth="50 px" alt="curry">
+            <div class="card-body">
+                <h5 class="card-title text-center "><a href="#" class="text-dark">Frid-rice</a></h5>
+                <p class="card-text text-center">Par Poul.S</p>
+            </div>
+            <div class="card-footer">
+              <span class="me-5" >nb_like <i class="fa fa-thumbs-up"></i></span>
+              <span>10/01/2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card text-center">
+            <img src="image/couscous-1503943_640.jpg" class="card-img-top" higth="50 px" alt="curry">
+            <div class="card-body">
+                <h5 class="card-title text-center "><a href="#" class="text-dark">Couscous</a></h5>
+                <p class="card-text text-center">Par Leila.M</p>
+            </div>
+            <div class="card-footer">
+              <span class="me-5" >nb_like <i class="fa fa-thumbs-up"></i></span>
+              <span>10/02/2024</span>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+      </div>
+    </div>
+  </section>     
+  </main>
+  <footer>
+    <div class="container mt-5 py-5 border-top ">
+      <div class="row gy-4 align-items-center ">
+        <div class="col-12 col-md-4">
+          <span class = "fw-bold">&copy; Cooking-2024</span>
+        </div>
+        <div class="col-12 col-md-4 text-md-center">
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="#" class="text-decoration-none text-dark fw-bold" data-bs-toggle="modal"
+                          data-bs-target="#mentionsLegales">Legal Notice</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a href="#" class="text-decoration-none text-dark" data-bs-toggle="tooltip"
+                          title="LinkedIn">
+                  <i class="fab fa-linkedin fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-decoration-none text-dark" data-bs-toggle="tooltip"
+                          title="Instagram">
+              <i class="fab fa-instagram-square fa-2x"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-decoration-none text-dark" data-bs-toggle="tooltip" title="Twitter">
+              <i class="fab fa-twitter-square fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <!-- Bootstrap JS bundle  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>                       
+                               
+              
+                       
+                     
+
+                   
+          

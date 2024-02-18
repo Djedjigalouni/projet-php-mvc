@@ -31,6 +31,8 @@
                         </button>
                     </div>
                 </div>
+
+                <?php if(!isset($_SESSION["user"])) : ?>
                 <div class="col-12 col-md-3 text-center">
                   <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -41,12 +43,13 @@
                        
                       </ul>
                       <?php endforeach ?>
-                      <a class="btn btn-outline-success me-2" href="<?= $router->generate("login")  ?>" role="button" >Inscrivez vous maintenant</a>
+                      <a class="btn btn-outline-success me-2" href="<?= $router->generate("admin_user_new")  ?>" role="button" >Inscrivez vous maintenant</a>
                      
                     </div>
                   </div>
                 
                 </div>
+                <?php endif ?>
             </div>
         </div>
     </section>         
@@ -72,13 +75,17 @@
                         <img src="<?= $value->getUrlImg() ?>" class="card-img-top" higth="50 px" alt="curry">
                     <div class="card-body">
                         <h5 class="card-title text-center "><?= $value->getNom() ?></h5>
-                        <p class="card-text text-center"><strong>Description : </strong><br><strong><?= $value->lireLaSuite() ?> </p>
-                        <p class="card-text text-center">Modele :<br><?= $value->getModele() ?></p>
+                        <p class="card-text text-center"><strong>Description : </strong><br><?= $value->lireLaSuite() ?> </p>
+                        <p class="card-text text-center"><strong>Modele :</strong><br><?= $value->getModele() ?></p>
+                        
                     </div>
                     <div class="card-footer text-center">
-                        <span class="me-5"><?= $value->getEnVente() ?></span>
-                        <span class="text-end"><?= $value->getDateCreation() ?></span>
+                        <span class="me-5"><strong>En vente :</strong><?= $value->getEnVente() ?></span>
+                        <span class="text-end"><strong>Creer le :</strong><?= $value->getDateCreation() ?></span>
+                        
+                <?php if(isset($_SESSION["user"])) : ?>
                         <a class="btn btn-outline-success me-2" href=" <?= $router->generate("admin_vehicule_edit").$value->getId()  ?>" role="button" >Editer</a>
+                <?php endif ?>
                     </div>
                 </div>
             </div>

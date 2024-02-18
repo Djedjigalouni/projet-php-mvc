@@ -1,7 +1,14 @@
 <?php
 namespace App\Controller ;
 
+use App\Form\EtudiantType;
+
+use Doctrine\ORM\EntityManagerInterface;
+
+use Etudiant;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController{
@@ -34,6 +41,23 @@ class HomeController extends AbstractController{
      return $this->render("front/boucle-condition.html.twig" , $data ) ;
 
    }
+
+  #[Route(path : "/new_etudiant" , name : "/new_etudiant")]
+      public function new_etudiant(Request $request , EntityManagerInterface $em){
+         $data = [];
+         $etudiant = new Etudiant();
+         $form = $this->createForm(EtudiantType::class, $etudiant);
+         $data["form"] = $form ;
+         $form->handleRequest($request); //handleRequest :c'est comme les ->setNomAtt dans le php
+         if($form->isSubmitted() && $form->isValid()){
+            $em->persist($etudiant); //persist ->si le id=0 ->il va faire un insert ,si le id=1 ->un update
+            $em->flush() ;
+           return  $this->redirectToRoute("exo4"); //rederiction vers la page exo4
+         }
+
+         return $this->render("front/new_etudiant.html.twig" , $data); //si le post n'est pas vide et tout les tests sont valides
+      }
+
 }
 
 

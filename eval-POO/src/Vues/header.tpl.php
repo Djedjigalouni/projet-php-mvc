@@ -29,6 +29,7 @@
             </li>
           </ul>
           <?php if(!isset($_SESSION["user"])) : ?>
+            <a class="btn btn-outline-success me-2" href="<?= $router->generate("admin_user_new")  ?>" role="button" >Inscrivez vous maintenant</a>
             <a class="btn btn-outline-success me-2 " href="<?= $router->generate("login")  ?>" role="button" >Se connecter</a>
           <?php endif ?>
            <?php if(isset($_SESSION["user"])) : ?> 
