@@ -7,8 +7,7 @@
         <div class="col-12 col-md-4 text-md-center">
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="<?= $router->generate("mention_legale")  ?>" class="text-decoration-none text-dark fw-bold" data-bs-toggle="modal"
-                          data-bs-target="#mentionsLegales">mention legale</a>
+            <a class="nav-link active text-dark" aria-current="page" href="<?= $router->generate("mention_legale")  ?>"><strong>Mention legale</strong></a>
             </li>
           </ul>
         </div>

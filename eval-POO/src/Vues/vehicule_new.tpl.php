@@ -31,6 +31,7 @@
                         <label for="image">Image :*</label>
                         <input type="text" class="form-control" name="image" id="image" value="<?= $data["vehicule"]->getImage() ?> ">
                     </div>
+
                 
                 <div class="text-center mt-4 my-4">
                 <?php if (!$data["vehicule"]->getId()) {?>
