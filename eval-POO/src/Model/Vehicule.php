@@ -3,7 +3,8 @@
 namespace App\Model ;
 
 use PDO ;
-use App\Utils\Bdd ; 
+use App\Utils\Bdd ;
+use phpDocumentor\Reflection\Types\Integer;
 
 class Vehicule{
     private int|null $id = null  ;
@@ -180,7 +181,7 @@ class Vehicule{
             ":image" => $this->image,
             ":modele" => $this->modele,
             //":date_creation" => $this->date_creation,
-            ":en_vente" => $this->en_vente
+            ":en_vente" => (Integer) $this->en_vente
         ]);
         return $stmt->rowCount(); 
     }
@@ -207,7 +208,7 @@ class Vehicule{
     public function update(){
         $connexion = Bdd::getInstance();
         $sql = "UPDATE vehicule 
-                SET nom = :nom , description = :description , modele = :modele , image=:image 
+                SET nom = :nom , description = :description , modele = :modele , image=:image, en_vente=:en_vente 
                 WHERE id = :id";
         $stmt = $connexion->prepare($sql);
         $stmt->execute([
@@ -215,7 +216,8 @@ class Vehicule{
             ":nom" => $this->nom ,
             ":description" => $this->description ,
             ":modele"    => $this->modele,
-            ":image" => $this->image
+            ":image" => $this->image,
+            ":en_vente" => (Integer) $this->en_vente
         ]);
         return $stmt->rowCount(); 
     }

@@ -18,11 +18,12 @@ class AdminController  extends AbstractController{
         $erreur = []; 
         $vehiculeModel = new Vehicule();
         if(!empty($_POST)){
-            // fonction sanitize => enlever les caractères injections 
+            
             $nom = htmlspecialchars(trim($_POST["nom"]));
             $description = htmlspecialchars(trim($_POST["description"]));
             $modele = htmlspecialchars(trim($_POST["modele"]));
             $image = filter_input(INPUT_POST , "image", FILTER_SANITIZE_URL ); 
+            $en_vente = $_POST["en_vente"] == "on"? 1: 0;
 
             if(strlen($nom ) < 3 || strlen($nom) > 100){
                 $erreur[] = "le titre doit contenir entre 3 et 100 lettres";
@@ -43,12 +44,11 @@ class AdminController  extends AbstractController{
             $vehiculeModel->setNom($nom)
                          ->setDescription($description)
                          ->setModele($modele)
-                         ->setImage($image === "" ? null : $image  ); 
+                         ->setImage($image === "" ? null : $image  )
+                         ->setEnVente($en_vente);
             if(empty($erreur)){
                 $vehiculeModel->create();
                 global $router ;
-                // permet d'être redirigé vers la page d'accueil 
-                // redirection http 
                 header("Location:". $router->generate("home"));
             }
         }
@@ -65,19 +65,20 @@ class AdminController  extends AbstractController{
         $vehiculeModel = new Vehicule();
         if (!empty($_POST["modifier"])) {
             if(!empty($_POST)){
-                // fonction sanitize => enlever les caractères injections 
+                
                 $id =(int) htmlspecialchars(trim($_POST["id"]));
                 $nom = htmlspecialchars(trim($_POST["nom"]));
                 $description = htmlspecialchars(trim($_POST["description"]));
                 $modele = htmlspecialchars(trim($_POST["modele"]));
-                $image = filter_input(INPUT_POST , "image", FILTER_SANITIZE_URL ); 
-    
+                $image = filter_input(INPUT_POST , "image", FILTER_SANITIZE_URL );
+                $en_vente = $_POST["en_vente"] == "on" ? 1 : 0; 
+                var_dump($en_vente);
                 if(strlen($nom ) < 3 || strlen($nom) > 100){
                     $erreur[] = "le titre doit contenir entre 3 et 100 lettres";
                 }
     
                 if(strlen($description ) < 3 || strlen($description) > 65000){
-                    $erreur[] = "le contenu doit contenir entre 3 et 65000 lettres";
+                    $erreur[] = "la description doit contenir entre 3 et 65000 lettres";
                 }   
     
                 if(strlen($modele ) < 3 || strlen($modele) > 100){
@@ -92,16 +93,16 @@ class AdminController  extends AbstractController{
                              ->setNom($nom)
                              ->setDescription($description)
                              ->setModele($modele)
-                             ->setImage($image === "" ? null : $image  ); 
+                             ->setImage($image === "" ? null : $image  )
+                             ->setEnVente($en_vente);
                 if(empty($erreur)){
                     $vehiculeModel->update();
                     global $router ;
-                    // permet d'être redirigé vers la page d'accueil 
-                    // redirection http 
                     header("Location:". $router->generate("home"));
                 }
             }
             $data = [];
+            $data["h1"] ="modifier un vehicule";
             $data["erreur"] = $erreur;
             $data["vehicule"] = $vehiculeModel ; 
             $this->render("vehicule_new", $data); 
@@ -111,11 +112,10 @@ class AdminController  extends AbstractController{
         else if (!empty($_POST["supprimer"])) {
             $vehiculeModel->delete($_POST["id"]);
             global $router ;
-            // permet d'être redirigé vers la page d'accueil 
-            // redirection http 
+           
             header("Location:". $router->generate("home"));
         } else {
-            // Editer l'objet
+            
             $uri = $_SERVER["REQUEST_URI"];
             $parts = explode("/",$uri);
             $id = (int) $parts[sizeof($parts) - 1];
@@ -135,8 +135,7 @@ class AdminController  extends AbstractController{
             $email = htmlspecialchars(trim($_POST["email"]));
             $password = htmlspecialchars(trim($_POST["password"]));
             $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
-            // série de tests 
-            // email valide
+           
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $erreur[] = "email invalide"; 
             }
@@ -144,12 +143,12 @@ class AdminController  extends AbstractController{
                 $erreur[] = "le pseudo doit contenir entre 3 et 100 lettres";
             }
 
-            // password contient 8 lettres avec majuscule et minuscule et un chiffre 
-            // regex (?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}
+     
+            
             if(!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $password)){
                 $erreur[] = "le password doit contenir 8 lettres avec au moins une majuscule et une minuscule et un chiffre ";
             }
-             // est ce que il n'y a pas déjà un projet user avec le mail saisi 
+            
             $userModel = new User(); 
             if($userModel->isUnique($email) !== 0){
                 $erreur[] = "le mail saisit est déjà utilisé, veuillez choisir une autre email"; 
@@ -160,9 +159,9 @@ class AdminController  extends AbstractController{
             $userModel->setEmail($email)
                 ->setPassword($passwordHashed)
                 ->setPseudo($pseudo);
-            // si il n'y a pas d'erreur 
+            
             if(empty($erreur)){
-                // create 
+              
                 $userModel->create();
                 global $router ;
                 header("Location:" . $router->generate("home"));
@@ -181,8 +180,7 @@ class AdminController  extends AbstractController{
             $id = htmlspecialchars(trim($_POST["id"]));
             $email = htmlspecialchars(trim($_POST["email"]));
             $pseudo = htmlspecialchars(trim($_POST["pseudo"]));
-            // série de tests 
-            // email valide
+           
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $erreur[] = "email invalide"; 
             }
@@ -190,7 +188,7 @@ class AdminController  extends AbstractController{
                 $erreur[] = "le pseudo doit contenir entre 3 et 100 lettres";
             }
 
-             // est ce que il n'y a pas déjà un projet user avec le mail saisi 
+             
             $userModel = new User(); 
             if($userModel->isUnique($email) !== 0){
                 $erreur[] = "le mail saisit est déjà utilisé, veuillez choisir une autre email"; 
@@ -199,9 +197,9 @@ class AdminController  extends AbstractController{
 
             $userModel->setEmail($email)
                 ->setPseudo($pseudo);
-            // si il n'y a pas d'erreur 
+           
             if(!empty($erreur)){
-                // create 
+                
                 $data["user"] = $userModel->readOne($id);
                 $data["h1"] = "Editer le profil"; 
                 $data["erreur"] = $erreur ; 
@@ -210,6 +208,7 @@ class AdminController  extends AbstractController{
             $userModel->update($id);
             $data["users"] = $userModel->readAll();
             $data["h1"] = "Gérer les utilisateurs"; 
+            $data["title"] = "gestion utilisateurs";
             $data["erreur"] = $erreur ; 
             $this->render("users" , $data);
             }
@@ -234,6 +233,7 @@ class AdminController  extends AbstractController{
         $userModel = new User();
         $userModel->delete($id);
         $data = [];
+        $data["title"] = "page gestion";
         $data["users"] = $userModel->readAll();
         $data["h1"] = "Gérer les utilisateurs"; 
         $data["erreur"] = $erreur ; 
